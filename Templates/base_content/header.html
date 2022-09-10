@@ -1,0 +1,86 @@
+{% load static %}
+<header class="header-default .d-block">
+  <nav class="navbar navbar-expand-lg .d-block">
+    <div class="container-xl">
+      <!-- logo  -->
+      <a href="/" class="navbar-brand">
+        <img src="{% static 'images/logo.svg' %}" alt="" />
+      </a>
+
+      <div class="collapse navbar-collapse">
+        <!-- Search Form-->
+        <div class="content mx-5">
+          <form method="get" action="{% url 'search' %}">
+            <div class="form-input">
+              <input type="search" name="query" placeholder="Search Here" />
+              <button type="submit" class="search-btn">
+                <i class="bx bx-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown active">
+            <a href="/" class="nav-link dropdown-toggle"> Categories </a>
+            <ul class="dropdown-menu">
+              {% for c in cat %}
+              <li>
+                <a href="#" class="dropdown-item"> {{ c.title }} </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+
+          <!--Second Dropdown-->
+          <li class="nav-item dropdown active mx-2">
+            <a href="/" class="nav-link dropdown-toggle"> User </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="{% url 'login' %}" class="dropdown-item"> Login </a>
+              </li>
+              <li>
+                <a href="{% url 'signup' %}" class="dropdown-item">Sign Up</a>
+              </li>
+              <li>
+                <a href="{% url 'dashboard' %}" class="dropdown-item"
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'passwordchange' %}" class="dropdown-item"
+                  >Password Change</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'passwordchange1' %}" class="dropdown-item"
+                  >Password Change-1</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'userprofile' %}" class="dropdown-item"
+                  >User Profile</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'reset_password' %}" class="dropdown-item"
+                  >Reset Password</a
+                >
+              </li>
+            </ul>
+          </li>
+          <!--Second Dropdown ends-->
+        </ul>
+      </div>
+
+      <!-- right side of header  -->
+      <div class="header-right">
+        <!-- buttons  -->
+        <div class="header-buttons">
+          <button class="burger-menu icon-button">
+            <span class="burger-icon"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

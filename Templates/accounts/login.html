@@ -1,0 +1,34 @@
+{% extends "base_content/base.html" %} {% load crispy_forms_tags %}
+
+<!-- Block Content -->
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm col-md col-lg rounded bordered p-3">
+      <h3 class="text-center">Login Page</h3>
+
+      <div class="message">
+        {% if messages %} {% for message in messages %}
+        <p {% if message.tags %} class="alert alert-success m-2" {% endif %}>
+          {{message}}
+        </p>
+        {% endfor %} {% endif %}
+      </div>
+
+      <form action="" method="post" novalidate>
+        {% csrf_token %}
+
+        <!-- Error form -->
+        {% if form.non_field.errors %} {% for error in form.non_field.errors %}
+        {{error}} {% endfor %} {% endif %} {{form | crispy }}
+        <input class="btn btn-success m-2" type="submit" value="Login" />
+      </form>
+    </div>
+    <div class="col-sm col-md col-lg"></div>
+  </div>
+  <p><a href="{% url 'reset_password' %}">Forgotten your password?</a></p>
+</div>
+
+<!-- End Block Content -->
+{% endblock content %}

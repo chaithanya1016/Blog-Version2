@@ -1,0 +1,45 @@
+{% extends "base_content/base.html" %} {% load crispy_forms_tags %}
+
+<!-- Block Content -->
+{% block content %}
+
+<div class="container">
+  <div class="row-sm">
+    <div class="col-sm col-md col-lg rounded bordered p-3">
+      <h3 class="text-center">User Details</h3>
+
+      <div class="message">
+        {% if messages %} {% for message in messages %}
+        <p
+          {%
+          if
+          message.tags
+          %}
+          class="{{message.tags}} alert alert-success m-2"
+          {%
+          endif
+          %}
+        >
+          {{message}}
+        </p>
+        {% endfor %} {% endif %}
+      </div>
+
+      <form action="" method="post" novalidate>
+        {% csrf_token %} {% for fm in form %} {{fm.label_tag}} {{fm }}
+        {{fm.errors|striptags}} <br />
+        <br />
+        {% endfor %}
+        <input
+          class="btn btn-success m-2"
+          type="submit"
+          value="Change Password"
+        />
+      </form>
+    </div>
+    <div class="col-sm col-md col-lg"></div>
+  </div>
+</div>
+
+<!-- End Block Content -->
+{% endblock content %}

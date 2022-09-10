@@ -1,0 +1,59 @@
+.detail-content p ::first-letter {
+  color: #ff0000;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.detail-title h3 {
+  color: red;
+  padding: 5px 10px 0px 20px;
+}
+.img-detail {
+  display: grid;
+  height: 100%;
+}
+.article-img {
+  max-width: 100%;
+  max-height: 100vh;
+  height: auto;
+  margin: auto;
+}
+.img-detail .article-img {
+  padding: 10px 20px 10px 20px;
+  object-fit: cover;
+}
+
+.img-detail img {
+  object-fit: contain;
+}
+
+.detail-content p {
+  font-size: 15px;
+  color: black;
+  font-weight: 400;
+  padding: 5px 20px 5px 20px;
+  text-align: justify;
+}
+
+.overiew-article .overview-art {
+  padding: 1px 10px 2px 20px;
+  text-align: justify;
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.image--cover {
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center right;
+}
+
+.bio-pic img {
+  padding: 0px 10px 0px 20px;
+}
+
+.comment-see .media {
+  padding: 10px 10px 10px 10px;
+  margin: 5px 5px 5px 5px;
+}

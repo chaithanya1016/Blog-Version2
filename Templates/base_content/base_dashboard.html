@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "base_content/head.html" %}
+  <title>{% block title %} Dashboard {% endblock title %}</title>
+  <body>
+    <div class="site-wrapper">
+      <!-- Block Content -->
+      {% block content %} {% endblock content %}
+
+      <!-- javascripts  -->
+      {% include "base_content/scripts.html" %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+{% extends "base_content/base.html" %}
+{% load static %}
+{% load blog_extras %}
+
+<!-- Block Content -->
+{% block content %}
+
+<!-- section starts  -->
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Category</h1>
+
+        
+      <ul class="cards">
+      {% for art in articles %}
+        <li>
+          <a href="" class="card">
+            <img src="{{art.article_image.url}}" class="card__image" alt="Image Loading" />
+            <div class="card__overlay">
+              <div class="card__header">
+                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+                <img class="card__thumb" src="{% static 'images/default-profile.jpeg' %}" alt="Profile Not Found" />
+                <div class="card__header-text">
+                  <h3 class="card__title">{{art.title}}</h3>            
+                  <span class="card__status">({{art.create|timesince}} ago)</span>
+                </div>
+              </div>
+              <p class="card__description">{{ art.content|convert_markdown|slice:"100" }}</p>
+            </div>
+          </a>      
+        </li>
+        {% empty %}
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h3 align="center">No Posts are avaialble in this category</h3>
+        </div>
+      </div>
+      {% endfor %}  
+      </ul>
+
+      
+
+    </div>
+  </div>
+</div>
+
+<!-- End Block Content -->
+{% endblock content %}

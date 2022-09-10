@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "base_content/head.html" %}
+
+  <body>
+    <div class="site-wrapper">
+      <div class="main-overlay"></div>
+      <!-- header section -->
+      {% include "base_content/header.html" %}
+
+      <!-- Block Content -->
+      {% block content %} {% endblock content %}
+
+      <!-- Side Popup -->
+      {% include "base_content/side-popup.html" %}
+
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <!-- footer -->
+      {% include "base_content/footer2.html" %}
+
+      <!-- javascripts  -->
+      {% include "base_content/scripts.html" %}
+    </div>
+  </body>
+</html>

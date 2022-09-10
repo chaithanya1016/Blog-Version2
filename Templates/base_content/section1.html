@@ -1,0 +1,151 @@
+{% load static %}
+
+<!-- section starts  -->
+<section id="hero">
+  <div class="container-xl">
+    <div class="row gy-4">
+      <div class="col-lg-8">
+        {% for fp in featured_post %}
+
+        <div class="post featured-post-lg">
+          <div class="details clearfix">
+            <a href="#" class="category-badge"> {{ fp.category }} </a>
+            <h2 class="post-title">
+              <a href="{% url 'article_detail' fp.category.slug fp.slug %}">
+                {{ fp.title }}
+              </a>
+            </h2>
+            <ul class="meta list-inline mb-0">
+              <li class="list-inline-item">
+                <a href="#"> {{ fp.author }} </a>
+              </li>
+              <li class="list-inline-item">{{ fp.create }}</li>
+            </ul>
+          </div>
+          <a href="#">
+            <div class="thumb rounded">
+              <img class="inner data-bg-image" src="{{fp.article_image.url}}" />
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        <!-- End for  featured posts -->
+      </div>
+      <div class="col-lg-4">
+        <div class="post-tabs rounded bordered">
+          <ul
+            class="nav nav-tabs nav-pills nav-fill"
+            id="postTab"
+            role="tablist"
+          >
+            <li class="nav-item" role="presentation">
+              <button
+                aria-controls="popular"
+                aria-selected="true"
+                class="nav-link active"
+                data-bs-target="#popular"
+                data-bs-toggle="tab"
+                id="popular-tab"
+                role="tab"
+                type="button"
+              >
+                Popular
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                aria-controls="recent"
+                aria-selected="false"
+                class="nav-link"
+                data-bs-target="#recent"
+                data-bs-toggle="tab"
+                id="recent-tab"
+                role="tab"
+                type="button"
+              >
+                Recent
+              </button>
+            </li>
+          </ul>
+
+          <!-- content  -->
+          <div class="tab-content" id="postsTabContent">
+            <!-- loader -->
+            <div class="lds-dual-ring"></div>
+            <!-- pop post  -->
+
+            <div
+              class="tab-pane fade show active"
+              id="popular"
+              aria-labelledby="popular-tab"
+              role="tabpanel"
+            >
+              <!-- post-1 -->
+              {% for pop in popular_post %}
+
+              <div class="post post-list-sm circle">
+                <div class="thumb circle">
+                  <a href="#">
+                    <div class="inner">
+                      <img
+                        class="thumb circle"
+                        src="{{ pop.article_image.url }}"
+                        alt=""
+                      />
+                    </div>
+                  </a>
+                </div>
+                <div class="details clearfix">
+                  <h6 class="post-title my-0">
+                    <a
+                      href="{% url 'article_detail' pop.category.slug pop.slug %}"
+                    >
+                      {{ pop.title }}
+                    </a>
+                  </h6>
+                  <ul class="meta list-inline mt-1 mb-0">
+                    <li class="list-inline-item">{{ pop.create }}</li>
+                  </ul>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- recent  -->
+            <div
+              class="tab-pane fade"
+              id="recent"
+              aria-labelledby="recent-tab"
+              role="tabpanel"
+            >
+              <!-- post-1  -->
+              {% for rec in recent_post %}
+              <div class="post post-list-sm circle">
+                <div class="thumb circle">
+                  <a href="#">
+                    <div class="inner">
+                      <img src="{{ rec.article_image.url }}" alt="" />
+                    </div>
+                  </a>
+                </div>
+                <div class="details clearfix">
+                  <h6 class="post-title my-0">
+                    <a
+                      href="{% url 'article_detail' rec.category.slug rec.slug %}"
+                    >
+                      {{ rec.title }}
+                    </a>
+                  </h6>
+                  <ul class="meta list-inline mt-1 mb-0">
+                    <li class="list-inline-item">{{ rec.create }}</li>
+                  </ul>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
