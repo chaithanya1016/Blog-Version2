@@ -1,6 +1,3 @@
-
-from email.headerregistry import Group
-from unicodedata import name
 from django.shortcuts import render,redirect, HttpResponseRedirect
 from accounts.forms import SignUpForm, LoginForm, EditUserProfileForm, EditAdminProfileForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, SetPasswordForm, UserChangeForm
