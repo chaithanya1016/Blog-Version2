@@ -9,7 +9,6 @@ from django.contrib.auth import update_session_auth_hash, authenticate, login, l
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 
-
 # Create your views here.
 
 #Sign Up
@@ -47,13 +46,10 @@ def loginview(request):
     else:
         return HttpResponseRedirect('/accounts/dashboard/')
 
-
-
 #logout
 def logoutview(request):
     logout(request)
     return HttpResponseRedirect('/accounts/login/')
-
 
 #Password Change with old Password
 @login_required
@@ -69,7 +65,6 @@ def password_change(request):
         form = PasswordChangeForm(user=request.user)
     return render(request, 'accounts/passwordchange.html', {'form': form})
     
-
 #Password Change without old Password
 @login_required
 def password_change1(request):
@@ -108,7 +103,6 @@ def user_profile(request):
             form = EditUserProfileForm(instance=request.user)
             users = None
     return render(request, 'accounts/userprofile.html', {'form':form, 'users':users})
-
 
 #User Details
 def user_detail(request,id):
