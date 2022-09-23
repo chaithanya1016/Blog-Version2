@@ -38,9 +38,13 @@ class Article(models.Model):
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
 
     def __str__(self):
         return self.title
+
+    def num_likes(self):
+        return self.liked.all().count()
 
     class Meta:
         ordering = ['-create']
@@ -48,6 +52,19 @@ class Article(models.Model):
     def get_absolute_url(self):
         return '/%s/%s/' % (self.category.slug, self.slug)
     
+
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
+)
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.post)
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, related_name='comments', on_delete=models.CASCADE)
