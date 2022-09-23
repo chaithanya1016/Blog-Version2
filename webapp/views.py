@@ -3,7 +3,7 @@ from http.client import HTTPResponse
 from django.db.models import Q
 from django.shortcuts import redirect, render, get_object_or_404, HttpResponseRedirect
 from django.http.response import Http404, HttpResponse
-from .models import Article, Category
+from .models import Article, Category, Like
 from .forms import CommentForm, AddArticleForm, ArticleUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
@@ -32,7 +32,6 @@ def articlelist_view(request):
     inspiration = Article.objects.order_by('-author')[:3]
     latest_posts = Article.objects.order_by('-create')[:4]
 
-
     context = {'article':article,
      'featured_post':featured_post, 
      'popular_post':popular_post, 
@@ -56,10 +55,25 @@ def category_view(request, slug):
     return render(request, 'webapp/category.html',context)
 
 def articledetails_view(request, category_slug, slug):
+    user = request.user
     article = get_object_or_404(Article, status='published', slug=slug)
     if request.method == "POST":
-        form = CommentForm(request.POST)
+        article_id = request.POST.get('article_id')
+        article_obj = Article.objects.get(id=article_id)
+        if user in article_obj.liked.all():
+            article_obj.liked.remove(user)
+        else:
+            article_obj.liked.add(user)
 
+        like, created = Like.objects.get_or_create(user=user, article_id = article_id)
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+        like.save()
+
+        form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.article = article
