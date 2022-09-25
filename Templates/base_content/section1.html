@@ -11,7 +11,9 @@
           <div class="details clearfix">
             <a href="#" class="category-badge"> {{ fp.category }} </a>
             <h2 class="post-title">
-              <a href="{% url 'article_detail' fp.category.slug fp.slug %}">
+              <a
+                href="{% url 'webapp:article_detail' fp.category.slug fp.slug %}"
+              >
                 {{ fp.title }}
               </a>
             </h2>
@@ -98,7 +100,7 @@
                 <div class="details clearfix">
                   <h6 class="post-title my-0">
                     <a
-                      href="{% url 'article_detail' pop.category.slug pop.slug %}"
+                      href="{% url 'webapp:article_detail' pop.category.slug pop.slug %}"
                     >
                       {{ pop.title }}
                     </a>
@@ -131,7 +133,7 @@
                 <div class="details clearfix">
                   <h6 class="post-title my-0">
                     <a
-                      href="{% url 'article_detail' rec.category.slug rec.slug %}"
+                      href="{% url 'webapp:article_detail' rec.category.slug rec.slug %}"
                     >
                       {{ rec.title }}
                     </a>
