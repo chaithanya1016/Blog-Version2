@@ -4,6 +4,18 @@
 {% load crispy_forms_tags %}
 
 {% load static %}
+
+<!-- Head Content -->
+{% block headpart %}
+
+<!-- Dashboard CSS -->
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+<link rel="stylesheet" href="{% static 'css/headerr.css' %}" />
+<link rel="stylesheet" href="{% static 'css/category.css' %}" />
+<link rel="stylesheet" href="{% static 'css/art_details.css' %}" />
+
+{% endblock headpart %}
+
 <!-- Block Content -->
 {% block content %}
 
@@ -23,17 +35,19 @@
                         <h3> {{article.title|title}} </h3>
                     </div>
 
-                    <div class="post-meta d-flex mb-3">
+                    <div class="mx-4 post-meta d-flex">
                         <div class="bio-pic mr-3">
                             {% if article.author.profile.profile_pic %}
                             <img src="{{ article.author.profile.profile_pic.url }}" class="image--cover">
                             {% else %}
-                            <img src="{% static 'images/default-profile.jpeg' %}" alt="Image Not Found" class="image--cover"> 
+                            <div class="box1"> 
+                                <i class='bx bxs-user-circle bx-burst' ></i>
+                            </div>
                             {% endif %}
                         </div>
                         <div class="vcard">
-                            <span class="d-block"><a class="text-capitalize font-weight-bold" href="#"> {{ article.author }} </a> | <div class="btn btn-warning btn-sm"><a href="{% url 'category_detail' article.category.slug %}"> {{article.category}} </a> </div>  </span>
-                            <small class="date-read text-muted"> <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> {{article.create|date:"d M Y"}} | {{article.read}} mins <i class="fa fa-star" aria-hidden="true"></i> </small>
+                            <span class="d-block"><a class="text-capitalize font-weight-bold" href="#"> {{ article.author }} </a> | <div class="btn btn-warning btn-sm"><a href="{% url 'webapp:category_detail' article.category.slug %}"> {{article.category}} </a> </div>  </span>
+                            <small class="date-read text-muted"> <i class='bx bx-calendar-heart'></i> {{article.create|date:"d M Y"}} | {{article.read}} mins <i class='bx bx-star bx-spin' ></i> </small>
                         </div>
                     </div>
 
@@ -46,7 +60,22 @@
                     <div class="detail-content card1">
                         <p id="content-org"> {{article.content|convert_markdown|safe}} </p>
                     </div>
+                    
+                    <!--Like and Unlike-->
+                    <div class="like container">
+                        <form action="{% url 'webapp:article_detail' article.category.slug article.slug %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="article_id" value="{{article.id}}">
+                            {% if user not in article.liked.all %}
+                            <button class="btn btn-success" type="submit">Like the Post</button>
+                            {% else %}
+                            <button class="btn btn-danger" type="submit">Disike the Post</button>
+                            {% endif %}
+                            <strong>{{ article.liked.all.count }} likes</strong>
+                        </form>
+                    </div>
 
+                    <!--hr-->
                     <div class="container">
                         <hr>
                     </div>
@@ -190,7 +219,7 @@
                                     <li class="list-inline-item">{{t1.create|date:"d M Y"}}</li>
                                 </ul>
                                 <h5 class="post-title mb-3 mt-3">
-                                     <a href="{% url 'article_detail' t1.category.slug t1.slug %}"> {{t1.title}}  </a>
+                                     <a href="{% url 'webapp:article_detail' t1.category.slug t1.slug %}"> {{t1.title}}  </a>
                                 </h5>
                                 <p class="excerpt mb-0">
                                     {{t1.overview|slice:"50"}}
@@ -486,7 +515,7 @@
                                 </div>
                                 <div class="details clearfix">
                                     <h6 class="post-title my-0">
-                                        <a href="{% url 'article_detail' pop.category.slug pop.slug %}"> {{ pop.title }} </a>
+                                        <a href="{% url 'webapp:article_detail' pop.category.slug pop.slug %}"> {{ pop.title }} </a>
                                     </h6>
                                     <ul class="meta list-inline mt-1 mb-0">
                                         <li class="list-inline-item"> {{ pop.create }} </li>
@@ -511,7 +540,7 @@
                                 </div>
                                 <div class="details clearfix">
                                     <h6 class="post-title my-0">
-                                        <a href="{% url 'article_detail' rec.category.slug rec.slug %}">{{ rec.title }}</a>
+                                        <a href="{% url 'webapp:article_detail' rec.category.slug rec.slug %}">{{ rec.title }}</a>
                                     </h6>
                                     <ul class="meta list-inline mt-1 mb-0">
                                         <li class="list-inline-item">{{ rec.create }}</li>
