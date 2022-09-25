@@ -57,6 +57,18 @@ def category_view(request, slug):
 def articledetails_view(request, category_slug, slug):
     user = request.user
     article = get_object_or_404(Article, status='published', slug=slug)
+
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = article
+            comment.save()
+            return redirect('article_detail', category_slug=article.category.slug, slug=article.slug)
+            #return redirect('article_detail', category=category_slug, slug=slug)
+    else:
+        form = CommentForm()
+
     if request.method == "POST":
         article_id = request.POST.get('article_id')
         article_obj = Article.objects.get(id=article_id)
@@ -72,16 +84,6 @@ def articledetails_view(request, category_slug, slug):
             else:
                 like.value = 'Like'
         like.save()
-
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.article = article
-            comment.save()
-            return redirect('article_detail', category_slug=article.category.slug, slug=article.slug)
-            #return redirect('article_detail', category=category_slug, slug=slug)
-    else:
-        form = CommentForm()
 
     featured_post = Article.objects.order_by('-create')[:1]
     popular_post = Article.objects.order_by('-title')[:4]
