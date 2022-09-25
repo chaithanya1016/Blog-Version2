@@ -1,4 +1,18 @@
-{% extends "base_content/base.html" %}
+{% extends "base_content/base.html" %} {% load static %}
+
+<!-- Title -->
+{% block title %} Home {% endblock title %}
+
+<!-- Head Content -->
+{% block headpart %}
+
+<!-- Dashboard CSS -->
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+<link rel="stylesheet" href="{% static 'css/headerr.css' %}" />
+<link rel="stylesheet" href="{% static 'css/category.css' %}" />
+<link rel="stylesheet" href="{% static 'css/art_details.css' %}" />
+
+{% endblock headpart %}
 
 <!-- Block Content -->
 {% block content %}
