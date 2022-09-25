@@ -118,7 +118,9 @@
                   <li class="list-inline-item">{{t1.create|date:"d M Y"}}</li>
                 </ul>
                 <h5 class="post-title mb-3 mt-3">
-                  <a href="{% url 'article_detail' t1.category.slug t1.slug %}">
+                  <a
+                    href="{% url 'webapp:article_detail' t1.category.slug t1.slug %}"
+                  >
                     {{t1.title}}
                   </a>
                 </h5>
