@@ -44,6 +44,7 @@ def loginview(request):
         return HttpResponseRedirect('/accounts/dashboard/')
 
 #logout
+@login_required
 def logoutview(request):
     logout(request)
     return HttpResponseRedirect('/accounts/login/')
@@ -102,6 +103,7 @@ def user_profile(request):
     return render(request, 'accounts/userprofile.html', {'form':form, 'users':users})
 
 #User Details
+@login_required
 def user_detail(request,id):
     if request.user.is_authenticated:
         pi = User.objects.get(pk=id)
