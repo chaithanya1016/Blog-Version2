@@ -13,6 +13,12 @@ class CommentForm(forms.ModelForm):
 
 #Add Article
 class AddArticleForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        #self.helper.form_action = reverse_lazy('index')
+        #self.helper.form_method = 'GET'
+        #self.helper.add_input(Submit('submit', 'Submit'))
     class Meta:
         model = Article
         fields = '__all__'
