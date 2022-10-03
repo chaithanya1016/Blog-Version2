@@ -1,7 +1,7 @@
 from dataclasses import fields
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django import forms
-from .models import Afrom crispy_forms.helper import FormHelper
+from .models import Comment, Article
 from crispy_forms.helper import FormHelper
 
 from crispy_forms.layout import Layout, Fieldset, Submit
