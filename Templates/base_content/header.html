@@ -10,9 +10,14 @@
       <div class="collapse navbar-collapse">
         <!-- Search Form-->
         <div class="content mx-5">
-          <form method="get" action="{% url 'search' %}">
+          <form method="get" action="{% url 'webapp:search' %}">
             <div class="form-input">
-              <input type="search" name="query" placeholder="Search Here" />
+              <input
+                type="search"
+                class="search"
+                name="query"
+                placeholder="Search Here"
+              />
               <button type="submit" class="search-btn">
                 <i class="bx bx-search"></i>
               </button>
