@@ -9,7 +9,7 @@
 
 <!-- SIDEBAR -->
 <section id="sidebar">
-  <a href="{% url 'article_list' %}" class="brand">
+  <a href="{% url 'webapp:article_list' %}" class="brand">
     <i class="bx bxs-smile"></i>
     <span class="text">Tech Soul</span>
   </a>
@@ -21,7 +21,7 @@
       </a>
     </li>
     <li>
-      <a href="{% url 'addarticle' %}">
+      <a href="{% url 'webapp:addarticle' %}">
         <i class="bx bxs-shopping-bag-alt"></i>
         <span class="text"> Add Post </span>
       </a>
@@ -93,7 +93,15 @@
     {% if messages %} {% for message in messages %}
     <div {% if message.tags %} class="alert alert-success m-2" {% endif %}>
       {{message}}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="Close"
+      ></button>
     </div>
     {% endfor %} {% endif %}
   </div>
@@ -105,7 +113,7 @@
         <h1>Dashboard</h1>
         <ul class="breadcrumb">
           <li>
-            <a class="activ" href="{% url 'article_list' %}">Home</a>
+            <a class="activ" href="{% url 'webapp:article_list' %}">Home</a>
           </li>
           <li><i class="bx bx-chevron-right"></i></li>
           <li>
@@ -179,14 +187,14 @@
             <td align="justify">{{art.content|safe|truncatewords:25}}</td>
             <td>
               {% if perms.webapp.change_article %}
-              <a href="{% url 'articleupdate' art.id %}">
+              <a href="{% url 'webapp:articleupdate' art.id %}">
                 <button class="btn btn-sm btn-warning">Edit</button>
               </a>
 
               {% else %}
               <small>No Edit Permission</small>
               {% endif %} / {% if perms.webapp.delete_article %}
-              <a href="{% url 'deletearticle' art.id %}">
+              <a href="{% url 'webapp:deletearticle' art.id %}">
                 <button class="btn btn-sm btn-danger">Delete</button>
               </a>
               {% else %}
