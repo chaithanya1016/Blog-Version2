@@ -23,6 +23,7 @@ def signup_view(request):
     context = {'form':form}
     return render(request, 'accounts/signup.html', context)
 
+
 #Login
 def loginview(request):
     if not request.user.is_authenticated:
@@ -43,11 +44,13 @@ def loginview(request):
     else:
         return HttpResponseRedirect('/accounts/dashboard/')
 
+    
 #logout
 @login_required
 def logoutview(request):
     logout(request)
     return HttpResponseRedirect('/accounts/login/')
+
 
 #Password Change with old Password
 @login_required
@@ -63,6 +66,7 @@ def password_change(request):
         form = PasswordChangeForm(user=request.user)
     return render(request, 'accounts/passwordchange.html', {'form': form})
     
+    
 #Password Change without old Password
 @login_required
 def password_change1(request):
@@ -77,6 +81,7 @@ def password_change1(request):
         form = SetPasswordForm(user=request.user)
     return render(request, 'accounts/passwordchange1.html', {'form': form})
   
+    
 #User Profile
 @login_required
 def user_profile(request):
@@ -101,6 +106,7 @@ def user_profile(request):
             form = EditUserProfileForm(instance=request.user)
             users = None
     return render(request, 'accounts/userprofile.html', {'form':form, 'users':users})
+
 
 #User Details
 @login_required
