@@ -20,8 +20,8 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from django.contrib.sitemaps.views import sitemap
-from FinalProj_Blog.sitemaps import CategorySitemap,ArticleSitemap
 
+#from FinalProj_Blog.sitemaps import CategorySitemap,ArticleSitemap
 #from webapp.views import robots_txt
 
 sitemaps = {'category':CategorySitemap, 'articles':ArticleSitemap}
