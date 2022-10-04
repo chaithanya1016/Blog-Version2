@@ -8,9 +8,9 @@ class SignUpForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
-        #self.helper.form_action = reverse_lazy('index')
+        #self.helper.form_action = reverse_lazy('login')
         #self.helper.form_method = 'GET'
-        #self.helper.add_input(Submit('submit', 'Submit'))
+        #self.helper.add_input(Submit('submit', 'Login'))
     #email = forms.CharField(required=True, widget=forms.EmailInput(attrs={'class': 'validate',}))
     password2 = forms.CharField(label='Confirm Password(Again)', widget = forms.PasswordInput)
     class Meta:
