@@ -1,91 +1,67 @@
 {% load static %}
-<header class="header-default .d-block">
-  <nav class="navbar navbar-expand-lg .d-block">
-    <div class="container-xl">
-      <!-- logo  -->
-      <a href="/" class="navbar-brand">
-        <img src="{% static 'images/logo.svg' %}" alt="" />
-      </a>
+<div class="container">
+  <nav
+    class="navbar sticky-top navbar-expand-lg navbar-light mb-3"
+    style="background-color: #e3f2fd"
+  >
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse">
-        <!-- Search Form-->
-        <div class="content mx-5">
-          <form method="get" action="{% url 'webapp:search' %}">
-            <div class="form-input">
-              <input
-                type="search"
-                class="search"
-                name="query"
-                placeholder="Search Here"
-              />
-              <button type="submit" class="search-btn">
-                <i class="bx bx-search"></i>
-              </button>
-            </div>
-          </form>
-        </div>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown active">
-            <a href="/" class="nav-link dropdown-toggle"> Categories </a>
-            <ul class="dropdown-menu">
-              {% for c in cat %}
-              <li>
-                <a href="#" class="dropdown-item"> {{ c.title }} </a>
-              </li>
-              {% endfor %}
-            </ul>
-          </li>
-
-          <!--Second Dropdown-->
-          <li class="nav-item dropdown active mx-2">
-            <a href="/" class="nav-link dropdown-toggle"> User </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="{% url 'login' %}" class="dropdown-item"> Login </a>
-              </li>
-              <li>
-                <a href="{% url 'signup' %}" class="dropdown-item">Sign Up</a>
-              </li>
-              <li>
-                <a href="{% url 'dashboard' %}" class="dropdown-item"
-                  >Dashboard</a
-                >
-              </li>
-              <li>
-                <a href="{% url 'passwordchange' %}" class="dropdown-item"
-                  >Password Change</a
-                >
-              </li>
-              <li>
-                <a href="{% url 'passwordchange1' %}" class="dropdown-item"
-                  >Password Change-1</a
-                >
-              </li>
-              <li>
-                <a href="{% url 'userprofile' %}" class="dropdown-item"
-                  >User Profile</a
-                >
-              </li>
-              <li>
-                <a href="{% url 'reset_password' %}" class="dropdown-item"
-                  >Reset Password</a
-                >
-              </li>
-            </ul>
-          </li>
-          <!--Second Dropdown ends-->
-        </ul>
-      </div>
-
-      <!-- right side of header  -->
-      <div class="header-right">
-        <!-- buttons  -->
-        <div class="header-buttons">
-          <button class="burger-menu icon-button">
-            <span class="burger-icon"></span>
-          </button>
-        </div>
-      </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link disabled"
+            href="#"
+            tabindex="-1"
+            aria-disabled="true"
+            >Disabled</a
+          >
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form>
     </div>
   </nav>
-</header>
+</div>
