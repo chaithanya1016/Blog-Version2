@@ -1,27 +1,24 @@
 {% extends "base_content/base.html" %} {% load static %}
-
 <!-- Title -->
-{% block title %} Home {% endblock title %}
+{% block titlepart %} Home {% endblock titlepart %}
 
-<!-- Head Content -->
+<!-- === Head part===-->
 {% block headpart %}
+<link rel=" stylesheet" href="{% static 'css/slick.css' %}" />
 
-<!-- Dashboard CSS -->
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
-<link rel="stylesheet" href="{% static 'css/headerr.css' %}" />
-<link rel="stylesheet" href="{% static 'css/category.css' %}" />
-<link rel="stylesheet" href="{% static 'css/art_details.css' %}" />
+<link rel="stylesheet" href="{% static 'style.css' %}" />
 
 {% endblock headpart %}
 
 <!-- Block Content -->
 {% block content %}
 
-<!-- section starts  -->
-{% include "base_content/section1.html" %}
+<div class="container">
+  <!-- section starts  -->
+  {% include "base_content/section1.html" %}
 
-<!-- main content  -->
-{% include "base_content/main-content.html" %}
-
+  <!-- main content  -->
+  {% include "base_content/main-content.html" %}
+</div>
 <!-- End Block Content -->
 {% endblock content %}
