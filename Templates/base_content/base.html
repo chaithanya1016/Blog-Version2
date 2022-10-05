@@ -3,12 +3,15 @@
 <html lang="en">
   <head>
     <!-- Title -->
-    <title>{% block title %} {% endblock title %}</title>
+    <title>{% block titlepart %} {% endblock titlepart %}</title>
     {% block headpart %} {% endblock headpart %}
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-    <link rel=" stylesheet" href="{% static 'css/slick.css' %}" />
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/headerr.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/category.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/art_details.css' %}" />
+
     <!-- Boxicons -->
     <link
       href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
@@ -28,18 +31,13 @@
     <div class="site-wrapper">
       <div class="main-overlay"></div>
       <!-- header section -->
-      {% include "base_content/header.html" %}
+      {% include "base_content/navbar.html" %}
 
       <!-- Block Content -->
       {% block content %} {% endblock content %}
 
       <!-- Side Popup -->
       {% include "base_content/side-popup.html" %}
-
-      <br />
-      <br />
-      <br />
-      <br />
 
       <!-- footer -->
       {% include "base_content/footer2.html" %}
